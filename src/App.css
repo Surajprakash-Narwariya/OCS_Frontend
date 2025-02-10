@@ -1,0 +1,228 @@
+/* Prevent scrolling on the page */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+    background-color: white; /* White background for outer strip */
+}
+
+/* App container centered */
+.app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(
+        to right,
+        #8b0000,
+        #ff8c00
+    ); /* Deep red to orange */
+    padding: 20px;
+    position: relative; /* Position for stacking context */
+    box-sizing: border-box;
+}
+
+/* The main container with a white border around it */
+.app-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 10px solid white; /* White strip around the outer edge */
+    box-sizing: border-box;
+    z-index: 1; /* Lower stacking order to avoid blocking interactions */
+}
+
+/* Login Form */
+.login-form {
+    background-color: white;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 600px; /* Maintains bigger size */
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative; /* Ensure it is above the pseudo-element */
+    z-index: 2; /* Higher z-index to stay above the white border */
+}
+
+/* Heading */
+.heading {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    color: #8b0000; /* Dark Red */
+    margin-bottom: 32px;
+}
+
+/* Form and Input Fields */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    padding: 14px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 18px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.input:focus {
+    border-color: #ff4500; /* Bright orange */
+    box-shadow: 0 0 6px rgba(255, 69, 0, 0.6);
+}
+
+/* Button */
+.submit-btn {
+    padding: 12px; /* Reduced height slightly */
+    background-color: #ff4500; /* Orange-red */
+    color: white;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    font-size: 18px;
+    text-align: center;
+    width: 160px;
+    margin: 20px auto;
+}
+
+.submit-btn:disabled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+}
+
+.submit-btn:hover:enabled {
+    background-color: #dc143c; /* Crimson */
+    transform: scale(1.05);
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+    background-color: #8b0000; /* Dark Red */
+}
+
+/* Error Message */
+.error {
+    margin-top: 20px;
+    color: #e53e3e;
+    font-weight: 600;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Data Table */
+.data-table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 16px;
+}
+
+.data-table th {
+    background-color: #ffe5b4; /* Light peach */
+    color: #8b0000; /* Dark red */
+    font-weight: bold;
+}
+
+.data-table tr:hover {
+    background-color: #fffaf0; /* Light warm tone */
+}
+
+/* Make sure the table fits inside the container */
+.data-table-container {
+    overflow-x: auto;
+}
+
+.image {
+    height: 100px;
+    width: 220px;
+}
+
+/* Media Queries for responsiveness */
+
+/* Small screens (Mobile Phones) */
+@media (max-width: 768px) {
+    .heading {
+        font-size: 24px; /* Smaller heading on mobile */
+    }
+
+    .login-form {
+        padding: 30px;
+    }
+
+    .input {
+        font-size: 16px; /* Smaller font size for inputs */
+    }
+
+    .submit-btn {
+        font-size: 16px; /* Smaller button text */
+        width: 140px; /* Smaller button on mobile */
+    }
+
+    .error {
+        font-size: 14px; /* Smaller error text */
+    }
+
+    .data-table th,
+    .data-table td {
+        font-size: 14px; /* Smaller font for table data */
+    }
+
+    /* Make the data table fit smaller screens */
+    .data-table-container {
+        overflow-x: auto;
+        padding: 10px;
+    }
+
+    /* Adjust the white strip border for mobile */
+    .app-container::before {
+        border-width: 5px; /* Thinner white strip */
+    }
+}
+
+/* Extra small screens (Mobile portrait) */
+@media (max-width: 480px) {
+    .heading {
+        font-size: 20px; /* Even smaller heading */
+    }
+
+    .login-form {
+        padding: 20px;
+    }
+
+    .input {
+        font-size: 14px; /* Even smaller font size for inputs */
+    }
+
+    .submit-btn {
+        font-size: 14px; /* Smaller button text */
+        width: 120px;
+    }
+
+    .error {
+        font-size: 12px;
+    }
+}
